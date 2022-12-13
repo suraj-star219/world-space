@@ -7,7 +7,7 @@ from dictor import dictor  # type: ignore
 from django.conf import settings
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.urls import NoReverseMatch
-from django_saml2_auth.errors import (ERROR_CREATING_SAML_CONFIG_OR_CLIENT,
+from .errors import (ERROR_CREATING_SAML_CONFIG_OR_CLIENT,
                                       INVALID_METADATA_URL,
                                       NO_ISSUER_IN_SAML_RESPONSE,
                                       NO_METADATA_URL_ASSOCIATED,
@@ -19,8 +19,8 @@ from django_saml2_auth.errors import (ERROR_CREATING_SAML_CONFIG_OR_CLIENT,
                                       NO_TOKEN_SPECIFIED,
                                       NO_USER_IDENTITY_IN_SAML_RESPONSE,
                                       NO_USERNAME_OR_EMAIL_SPECIFIED)
-from django_saml2_auth.exceptions import SAMLAuthError
-from django_saml2_auth.utils import get_reverse, run_hook
+from .exceptions import SAMLAuthError
+from .utils import get_reverse, run_hook
 from saml2 import BINDING_HTTP_POST, BINDING_HTTP_REDIRECT, entity
 from saml2.client import Saml2Client
 from saml2.config import Config as Saml2Config

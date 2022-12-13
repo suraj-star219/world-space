@@ -25,17 +25,17 @@ except ImportError:
     from django.utils.http import is_safe_url
 
 from django.views.decorators.csrf import csrf_exempt
-from django_saml2_auth.errors import (INACTIVE_USER, INVALID_NEXT_URL,
+from .errors import (INACTIVE_USER, INVALID_NEXT_URL,
                                       INVALID_REQUEST_METHOD, INVALID_TOKEN,
                                       USER_MISMATCH)
-from django_saml2_auth.exceptions import SAMLAuthError
-from django_saml2_auth.saml import (decode_saml_response,
+from .exceptions import SAMLAuthError
+from .saml import (decode_saml_response,
                                     extract_user_identity, get_assertion_url,
                                     get_default_next_url, get_saml_client)
-from django_saml2_auth.user import (create_custom_or_default_jwt,
+from .user import (create_custom_or_default_jwt,
                                     decode_custom_or_default_jwt,
                                     get_or_create_user, get_user_id)
-from django_saml2_auth.utils import (exception_handler, get_reverse,
+from .utils import (exception_handler, get_reverse,
                                      is_jwt_well_formed, run_hook)
 
 
