@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-from typing import List
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,13 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@&+(7rz-_13b^gsge&z7(@p8y)%n5)@&9d&fi)@(o3fn@@8e)d'
+SECRET_KEY = 'django-insecure-rzp(0_wta_&&##g9c(q!#pzri1$^+tm_8jct+5eqiw@=8zz&l^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS: List[str] = ['*']
+ALLOWED_HOSTS = ['*']
+
 
 # Application definition
 
@@ -40,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'space',
     'corsheaders',
+    'rest_framework',
+    'django_rest_passwordreset',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -55,10 +57,18 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'world.urls'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR + "/templates"],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTH_USER_MODEL = 'space.CustomUser'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -123,48 +133,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+MEDIA_ROOT = os.path.join(BASE_DIR,"static/download")
+MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-SAML2_AUTH = {
-    "DEFAULT_NEXT_URL": "http://app.example.com/account/login",
-    "CREATE_USER": True,
-    "NEW_USER_PROFILE": {
-        "USER_GROUPS": [],
-        "ACTIVE_STATUS": True,
-        "STAFF_STATUS": False,
-        "SUPERUSER_STATUS": False
-    },
-    "ATTRIBUTES_MAP": {
-        "email": "user.email",
-        "username": "user.username",
-        "first_name": "user.first_name",
-        "last_name": "user.last_name",
-        "token": "token"
-    },
-    "TRIGGER": {
-        "BEFORE_LOGIN": "django_saml2_auth.tests.test_user.saml_user_setup",
-        "GET_METADATA_AUTO_CONF_URLS":
-        "django_saml2_auth.tests.test_saml.get_metadata_auto_conf_urls"
-    },
-    "ASSERTION_URL": "https://api.example.com",
-    "ENTITY_ID": "https://api.example.com/sso/acs/",
-    "NAME_ID_FORMAT": "user.email",
-    "USE_JWT": True,
-    "JWT_SECRET": "JWT_SECRET",
-    "JWT_EXP": 60,
-    "JWT_ALGORITHM": "HS256",
-    "FRONTEND_URL": "https://app.example.com/account/login/saml",
-    "LOGIN_CASE_SENSITIVE": False,
-    "WANT_ASSERTIONS_SIGNED": True,
-    "WANT_RESPONSE_SIGNED": True,
-    "ALLOWED_REDIRECT_HOSTS": ["https://app.example.com",
-                               "https://api.example.com",
-                               "https://example.com"],
-    "TOKEN_REQUIRED": True
-}
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST="smtp.gmail.com"
+EMAIL_PORT=587
+EMAIL_HOST_USER="test1846756@gmail.com"
+EMAIL_HOST_PASSWORD="ockdsvvorxdrhzmp"
+EMAIL_USE_TLS=True
 
 CORS_ALLOW_ALL_ORIGINS = True

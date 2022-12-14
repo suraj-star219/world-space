@@ -1,3 +1,11 @@
-pysaml2==7.1.2
-PyJWT==2.4.0
-dictor==0.1.10
+asgiref
+cffi
+cryptography
+django==3.2
+django-rest-knox
+djangorestframework==3.13.1
+django-cors-headers
+pycparser
+pytz
+sqlparse
+typing_extensions
