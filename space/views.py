@@ -6,7 +6,7 @@ from .serializers import UserSerializer, RegisterSerializer, AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 from .serializers import *
 from .models import *
-from rest_framework.generics import ListCreateAPIView
+
 
 # Register API
 class RegisterAPI(generics.GenericAPIView):
@@ -31,8 +31,3 @@ class LoginAPI(KnoxLoginView):
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)
 
-class UserProfileView(ListCreateAPIView):
-    #permission_classes=[IsAuthenticated]
-    permission_classes = (permissions.AllowAny,)
-    queryset = User_Profile.objects.all()
-    serializer_class = ProfileSerializer

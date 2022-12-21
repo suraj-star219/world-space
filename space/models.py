@@ -44,24 +44,22 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         [reset_password_token.user.email]
     )
     
-gender= (
-    ("Male","Male"),
-    ("Female","Female"),
-    ("Other","Other")
-)
-class User_Profile(models.Model):
-    full_name=models.CharField(max_length=200)
-    phone = models.IntegerField(blank=False, unique=True)
-    alt_phone = models.IntegerField(blank=False)
-    gender = models.CharField(max_length=100,choices=gender)
-    DOB = models.DateField(auto_now_add=True) 
-    profile_photo = models.ImageField(upload_to='register/image', blank=True)
-    # address = models.CharField(max_length=200)
-    # city =models.CharField(max_length=200)
-    # state = INStateField(null=True, blank=True)
-    # pincode = models.PositiveIntegerField(default=0)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return "{}".format(self.full_name)
+# faculty_type = (
+#     ('Computer Science','Computer Science'),
+#     ('Business Administration','Business Administration'),
+#     ('Management','Management'),
+#     ('Marketing','Marketing'),
+#     ('Accounting','Accounting')
+# )
+# degree_type = (
+#     ('Bachelors','Bachelors'),
+#     ('Masters','Masters'),
+#     ('Associates','Associates'),
+#     ('Doctorates','Doctorates'),
+#     ('HighSchools','HighSchools')
+# )    
+# gender= (
+#     ("Male","Male"),
+#     ("Female","Female"),
+#     ("Other","Other")
+# ) 

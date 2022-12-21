@@ -9,3 +9,4 @@ pycparser
 pytz
 sqlparse
 typing_extensions
+django-filter

@@ -30,11 +30,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
-# User Profile
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User_Profile
-        fields= ['id','full_name','phone','alt_phone','gender','DOB','profile_photo','created_at','updated_at']
 
 #Overriding AuthTokenSerializer
 from django.contrib.auth import authenticate
